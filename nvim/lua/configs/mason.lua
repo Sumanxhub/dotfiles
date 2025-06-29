@@ -16,6 +16,8 @@ return {
       "clangd",
       "jdtls",
       "lua-language-server",
+      "rust-analyzer",
+      "kotlin-language-server",
 
       -- ]
 
@@ -25,6 +27,7 @@ return {
       "black",
       "autopep8",
       "stylua",
+      "ktlint",
 
       --linters
       "pyflakes",
@@ -32,6 +35,8 @@ return {
       -- "mypy",
       -- "ruff",
     },
+
+    automatic_installation = true,
 
     ui = {
       icons = {

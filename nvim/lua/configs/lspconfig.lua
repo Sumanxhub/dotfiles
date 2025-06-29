@@ -21,6 +21,8 @@ local servers = {
   "pyright",
   "jdtls",
   -- "pylsp",
+  "rust_analyzer",
+  "kotlin_language_server",
 }
 
 local nvlsp = require "nvchad.configs.lspconfig"
@@ -149,4 +151,31 @@ lspconfig.lua_ls.setup {
       },
     },
   },
+}
+
+lspconfig.rust_analyzer.setup {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  filetypes = { "rust" },
+  settings = {
+    ["rust-analyzer"] = {
+      cargo = { allFeatures = true },
+      check = {
+        command = "clippy",
+        enabled = true,
+      },
+      procMacro = {
+        enable = true,
+      },
+    },
+  },
+}
+
+lspconfig.kotlin_language_server.setup {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  filetypes = { "kotlin" },
+  cmd = { "kotlin-language-server" },
 }
