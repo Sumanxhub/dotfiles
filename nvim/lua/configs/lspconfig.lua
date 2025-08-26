@@ -9,38 +9,37 @@ local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
 
--- EXAMPLE
 local servers = {
   "html",
-  "cssls",
-  "tailwindcss",
-  "clangd",
-  "lua_ls",
+  --   "cssls",
+  --   "tailwindcss",
+  --   "clangd",
+  --   "lua_ls",
   "ts_ls",
-  "eslint",
-  "pyright",
-  "jdtls",
-  -- "pylsp",
-  "rust_analyzer",
-  "kotlin_language_server",
+  --   "eslint",
+  --   "pyright",
+  --   "jdtls",
+  --   -- "pylsp",
+  --   "rust_analyzer",
+  --   "kotlin_language_server",
 }
 
-local nvlsp = require "nvchad.configs.lspconfig"
+-- local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
-    on_attach = nvlsp.on_attach,
-    on_init = nvlsp.on_init,
-    capabilities = nvlsp.capabilities,
+    on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
   }
 end
 
-lspconfig.html.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-}
+-- lspconfig.html.setup {
+--   on_attach = on_attach,
+--   on_init = on_init,
+--   capabilities = capabilities,
+-- }
 
 lspconfig.cssls.setup {
   on_attach = on_attach,
@@ -49,19 +48,22 @@ lspconfig.cssls.setup {
   settings = {
     css = {
       lint = {
-        unknownAtRules = "ignore", -- 🚀 Ignore unknown @rules (removes @tailwind warning)
+        unknownAtRules = "ignore",
       },
     },
   },
 }
 
-lspconfig.ts_ls.setup {
+-- lspconfig.ts_ls.setup {
+--   on_attach = on_attach,
+--   on_init = on_init,
+--   capabilities = capabilities,
+-- }
+
+lspconfig.eslint.setup {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
-}
-
-lspconfig.eslint.setup {
   filetypes = {
     "javascript",
     "javascriptreact",
@@ -74,12 +76,15 @@ lspconfig.eslint.setup {
 }
 
 lspconfig.tailwindcss.setup {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
   settings = {
     tailwindCSS = {
       experimental = {
         classRegex = { "tw`([^`]*)`", 'tw="([^"]*)"', 'tw={"([^"}]*)"}' },
       },
-      validate = true, -- Keep validation enabled
+      validate = true,
     },
   },
   filetypes = { "html", "css", "javascript", "typescript", "jsx", "tsx" },
@@ -89,7 +94,6 @@ lspconfig.pyright.setup {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
-
   settings = {
     python = {
       analysis = {
@@ -113,7 +117,6 @@ lspconfig.jdtls.setup {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
-
   settings = {
     java = {
       eclipse = {

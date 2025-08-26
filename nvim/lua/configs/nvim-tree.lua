@@ -4,7 +4,7 @@ return {
       width = 35,
     },
     filters = {
-      dotfiles = true,
+      dotfiles = false,
     },
   },
   cmd = { "NvimTreeToggle", "NvimTreeFocus" },
