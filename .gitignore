@@ -1,3 +1,9 @@
 tmux/plugins
 foot/foot.bak
 waybar/.editorconfig
+fuzzel/fuzzel.bak
+mpd/log
+mpd/state
+mpd/database
+ncmpcpp/error.log
+ncmpcpp/patterns.list
