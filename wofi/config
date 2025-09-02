@@ -1,0 +1,15 @@
+show=drun
+width=440
+height=284
+location=6
+y=-272
+prompt=Apps
+insensitive=true
+halign=fill
+hide_scroll=true
+allow_images=true
+image_size=28
+gtk_dark=true
+show_all=true
+no_actions=true
+allow_markup=true
