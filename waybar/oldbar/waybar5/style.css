@@ -1,0 +1,132 @@
+/* === General Bar Styling === */
+* {
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 13px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: rgba(20, 20, 20, 0.75); /* dark & transparent */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+  transition: background 0.3s ease;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+/* === Module Alignments === */
+#modules-left,
+#modules-center,
+#modules-right {
+  padding: 0 6px;
+}
+
+/* === Shared Module Style === */
+#workspaces button,
+#clock,
+#network,
+#pulseaudio,
+#backlight,
+#mpris,
+#custom-launcher,
+#custom-power {
+  padding: 0 10px;
+  margin: 3px 4px;
+  border-radius: 6px;
+  background: rgba(40, 40, 40, 0.6);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+#workspaces button:hover,
+#clock:hover,
+#network:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#mpris:hover,
+#custom-launcher:hover,
+#custom-power:hover {
+  background: rgba(80, 80, 80, 0.8);
+  color: #ffffff;
+}
+
+/* === Launcher === */
+#custom-launcher {
+  font-size: 16px;
+  color: #5dade2;
+}
+
+/* === Workspaces === */
+#workspaces {
+  margin: 0 6px;
+}
+
+#workspaces button {
+  color: #aaa;
+  font-weight: bold;
+}
+
+#workspaces button.active {
+  background: rgba(90, 160, 250, 0.4);
+  color: #ffffff;
+}
+
+#workspaces button.urgent {
+  background: rgba(220, 50, 47, 0.7);
+  color: #fff;
+}
+
+/* === Taskbar === */
+#taskbar button {
+  padding: 0 6px;
+  margin: 2px;
+  border-radius: 6px;
+  background: rgba(30, 30, 30, 0.5);
+}
+
+#taskbar button.active {
+  background: rgba(90, 160, 250, 0.4);
+}
+
+/* === Clock === */
+#clock {
+  font-weight: bold;
+  color: #c7a9ff;
+}
+
+/* === Network === */
+#network {
+  color: #76c7c0;
+}
+
+/* === Volume === */
+#pulseaudio {
+  color: #58c4c4;
+}
+
+#pulseaudio.muted {
+  color: #777;
+}
+
+/* === Backlight === */
+#backlight {
+  color: #f39c12;
+}
+
+/* === MPRIS (media player) === */
+#mpris {
+  color: #1db954;
+}
+
+/* === Power Button === */
+#custom-power {
+  font-size: 15px;
+  color: #fc2828;
+}
+
+#custom-power:hover {
+  background: rgba(200, 40, 40, 0.7);
+}
