@@ -1,0 +1,91 @@
+/* ~/.config/waybar/style.css */
+/* layout: waybar4 */
+
+* {
+  font-family: "Hack Nerd Font", monospace;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+#waybar {
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  box-shadow: none;
+}
+
+#workspaces {
+  /* background-color: rgba(15, 27, 53, 0.9); */
+  padding: 1px 3px;
+  margin-top: 1px;
+  margin-left: 3px;
+  margin-right: 3px;
+  border-radius: 6px;
+}
+
+#clock,
+#custom-power {
+  /* background-color: rgba(15, 27, 53, 0.9); */
+  margin-top: 1px;
+  margin-right: 3px;
+  padding: 1px 3px;
+  border-radius: 0 6px 6px 0;
+}
+
+#network,
+#custom-lock {
+  /* background-color: rgba(15, 27, 53, 0.9); */
+  margin-top: 1px;
+  margin-left: 3px;
+  padding: 1px 3px;
+  border-radius: 6px 0 0 6px;
+}
+
+#custom-reboot,
+#pulseaudio,
+#backlight,
+#memory,
+#cpu {
+  /* background-color: rgba(15, 27, 53, 0.9); */
+  margin-top: 1px;
+  padding: 1px 3px;
+}
+
+#pulseaudio.muted {
+  color: #ff0000;
+}
+
+#network:hover,
+#backlight:hover,
+#pulseaudio:hover,
+#memory:hover,
+#cpu:hover,
+#clock:hover,
+#custom-lock:hover,
+#custom-reboot:hover,
+#custom-power:hover {
+  background-color: rgba(70, 75, 90, 0.3);
+}
+
+#workspaces button:hover {
+  background-color: rgba(97, 175, 239, 0.2);
+  padding: 0px 5px;
+  margin: 0 1px;
+  border-radius: 2px;
+}
+
+#workspaces button.active {
+  background-color: #61afef;
+  color: #000000;
+  padding: 1px 5px;
+  margin: 0 1px;
+  border-radius: 2px;
+}
+
+#workspaces button {
+  background: transparent;
+  border: none;
+  color: #999999;
+  padding: 0px 5px;
+  margin: 0 1px;
+  font-weight: bold;
+}
