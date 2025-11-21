@@ -54,7 +54,7 @@ progressbar_elapsed_color = red
 now_playing_prefix = "$7 $9"
 
 # Visualizer (if used)
-# visualizer_fifo_path = "/tmp/mpd.fifo"
+# visualizer_data_source = "/tmp/mpd.fifo"
 # visualizer_output_name = "Visualizer feed"
 # visualizer_in_stereo = yes
 # visualizer_type = spectrum
