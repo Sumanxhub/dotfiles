@@ -7,3 +7,4 @@ mpd/state
 mpd/database
 ncmpcpp/error.log
 ncmpcpp/patterns.list
+ncmpcpp/.lyrics/
