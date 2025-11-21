@@ -1,0 +1,82 @@
+* {
+  background-image: none;
+  box-shadow: none;
+  font-family: "Hack Nerd Font";
+}
+
+window {
+  background-color: rgba(15, 15, 20, 0.85);
+}
+
+/* General button styling */
+button {
+  border-radius: 16px;
+  border: 2px solid transparent; /* fixed border to prevent "shaking" */
+  font-size: 14px;
+  font-weight: 600;
+  color: #ececec;
+  background: linear-gradient(145deg, #222831, #1b1f27);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 25%;
+  padding: 22px;
+  margin: 14px;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* Lock button */
+#lock {
+  background-image: image(
+    url("/usr/share/wlogout/icons/lock.png"),
+    url("/usr/local/share/wlogout/icons/lock.png")
+  );
+}
+#lock:focus,
+#lock:active,
+#lock:hover {
+  border-color: #3b82f6; /* blue */
+  box-shadow: 0 0 18px rgba(59, 130, 246, 0.6);
+}
+
+/* Suspend button */
+#suspend {
+  background-image: image(
+    url("/usr/share/wlogout/icons/suspend.png"),
+    url("/usr/local/share/wlogout/icons/suspend.png")
+  );
+}
+#suspend:focus,
+#suspend:active,
+#suspend:hover {
+  border-color: #22c55e; /* green */
+  box-shadow: 0 0 18px rgba(34, 197, 94, 0.6);
+}
+
+/* Shutdown button */
+#shutdown {
+  background-image: image(
+    url("/usr/share/wlogout/icons/shutdown.png"),
+    url("/usr/local/share/wlogout/icons/shutdown.png")
+  );
+}
+#shutdown:focus,
+#shutdown:active,
+#shutdown:hover {
+  border-color: #ef4444; /* red */
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.6);
+}
+
+/* Reboot button */
+#reboot {
+  background-image: image(
+    url("/usr/share/wlogout/icons/reboot.png"),
+    url("/usr/local/share/wlogout/icons/reboot.png")
+  );
+}
+#reboot:focus,
+#reboot:active,
+#reboot:hover {
+  border-color: #f59e0b; /* amber */
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.6);
+}
