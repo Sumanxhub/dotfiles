@@ -175,10 +175,10 @@ lspconfig.rust_analyzer.setup {
   },
 }
 
-lspconfig.kotlin_language_server.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  filetypes = { "kotlin" },
-  cmd = { "kotlin-language-server" },
-}
+-- lspconfig.kotlin_language_server.setup {
+--   on_attach = on_attach,
+--   on_init = on_init,
+--   capabilities = capabilities,
+--   filetypes = { "kotlin" },
+--   cmd = { "kotlin-language-server" },
+-- }
