@@ -8,7 +8,7 @@
   "modules-right": ["network", "pulseaudio", "backlight", "memory", "cpu", "custom/power"],
 
   "custom/launcher": {
-    "format": "",
+    "format": " ",
     "tooltip": true,
     "tooltip-format": "Applications",
     "on-click": "wofi --show drun"
@@ -24,7 +24,10 @@
   },
 
   "hyprland/workspaces": {
-    "disable-scroll": true
+    "disable-scroll": true,
+    "persistent-workspaces": {
+    "*":[1,2,3]
+    },
   },
 
   "mpris": {
@@ -64,9 +67,9 @@
     "tooltip-format": "System volume:  {volume}%",
     "format-icons": {
       "default": [
-        "<span color='#808080'>   </span>",
-        "<span color='#FFFF66'>   </span>",
-        "<span color='#00FF7F'>   </span>"
+        "<span color='#808080'>  </span>",
+        "<span color='#FFFF66'>  </span>",
+        "<span color='#00FF7F'>  </span>"
       ]
     }
   },
@@ -77,10 +80,10 @@
     "tooltip": true,
     "tooltip-format": "Brightness:  {percent}%",
     "format-icons": [
-      "<span color='#696969'> 󰃞  </span>",
-      "<span color='#A9A9A9'> 󰃝  </span>",
-      "<span color='#FFFF66'> 󰃟  </span>",
-      "<span color='#FFD700'> 󰃠  </span>"
+      "<span color='#696969'> 󰃞 </span>",
+      "<span color='#A9A9A9'> 󰃝 </span>",
+      "<span color='#FFFF66'> 󰃟 </span>",
+      "<span color='#FFD700'> 󰃠 </span>"
     ]
   },
 
@@ -99,14 +102,14 @@
 
   "memory": {
     "interval": 5,
-    "format": "<span color='#8A2BE2'>  </span>{used:0.2f} GB ",
-    "format-alt": "<span color='#4e11ff'>  </span>{percentage}% ",
+    "format": "<span color='#8A2BE2'>   </span>{used:0.2f} GB ",
+    "format-alt": "<span color='#4e11ff'>   </span>{percentage}% ",
     "tooltip": true,
     "tooltip-format":"Memory Used: {used:0.2f}/{total:0.2f} GiB\n  Swap Used: {swapUsed:0.2f}/{swapTotal:0.2f} GiB"
   },
 
   "cpu": {
-    "format": "<span color='#FF9F0A'>  </span>{usage}% ",
+    "format": "<span color='#FF9F0A'>   </span>{usage}% ",
     "tooltip": true
   },
 

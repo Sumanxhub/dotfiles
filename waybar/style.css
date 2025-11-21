@@ -1,15 +1,23 @@
+/* === Color Variables (using @define-color for Waybar compatibility) === */
+@define-color bg-transparent transparent;
+@define-color bg-dark rgba(30, 30, 30, 0.8);
+@define-color bg-hover rgba(60, 60, 60, 1.0);
+@define-color bg-active rgba(100, 180, 255, 0.8);
+@define-color bg-urgent rgba(220, 50, 47, 0.8);
+@define-color text-light #e0e0e0;
+@define-color text-hover #ffffff;
+@define-color border-subtle rgba(255, 255, 255, 0.75);
+
 /* === General Bar Styling === */
 * {
-  font-family: "JetBrainsMono Nerd Font", monospace;
-  font-size: 13px;
+  font-family: "Hack Nerd Font", monospace;
+  font-size: 10px;
   min-height: 0;
 }
 
 window#waybar {
-  background: rgba(20, 20, 20, 0.75); /* dark & transparent */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  color: #e0e0e0;
-  transition: background 0.3s ease;
+  background: @bg-transparent;
+  color: @text-light;
 }
 
 window#waybar.hidden {
@@ -20,75 +28,116 @@ window#waybar.hidden {
 #modules-left,
 #modules-center,
 #modules-right {
-  padding: 0 6px;
+  padding: 0 4px;
 }
 
 /* === Shared Module Style === */
-#workspaces button,
 #clock,
 #network,
+#mpris,
+#custom-power {
+  padding: 0 8px;
+  margin: 2px 3px;
+  border-radius: 15px;
+  background: @bg-dark;
+  font-weight: bold;
+}
+
 #pulseaudio,
 #backlight,
-#mpris,
-#custom-launcher,
-#custom-power {
-  padding: 0 10px;
-  margin: 3px 4px;
-  border-radius: 6px;
-  background: rgba(40, 40, 40, 0.6);
+#memory,
+#cpu {
+  margin: 2px 3px;
+  border-radius: 15px;
+  background: @bg-dark;
+  font-weight: bold;
+}
+
+#clock:hover,
+#network:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#memory:hover,
+#cpu:hover,
+#mpris:hover,
+#custom-launcher:hover,
+#custom-power:hover {
+  background: @bg-hover;
+  color: @text-hover;
+}
+
+/* === Launcher === */
+#custom-launcher {
+  font-size: 14px;
+  color: #5baac2;
+  padding: 0 5px 0 8px;
+  margin: 2px 3px;
+  border-radius: 15px;
+  background: @bg-dark;
+}
+
+/* === Workspaces === */
+#workspaces {
+  margin: 2px 3px;
+  padding: 3px;
+  border-radius: 15px;
+  background: @bg-dark;
+}
+
+#workspaces button {
+  padding: 0 6px;
+  margin: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #aaa;
+  font-weight: bold;
   transition:
     background 0.2s ease,
     color 0.2s ease;
 }
 
-#workspaces button:hover,
-#clock:hover,
-#network:hover,
-#pulseaudio:hover,
-#backlight:hover,
-#mpris:hover,
-#custom-launcher:hover,
-#custom-power:hover {
-  background: rgba(80, 80, 80, 0.8);
-  color: #ffffff;
-}
-
-/* === Launcher === */
-#custom-launcher {
-  font-size: 16px;
-  color: #5dade2;
-}
-
-/* === Workspaces === */
-#workspaces {
-  margin: 0 6px;
-}
-
-#workspaces button {
-  color: #aaa;
-  font-weight: bold;
+#workspaces button:hover {
+  background: @bg-hover;
+  color: @text-hover;
 }
 
 #workspaces button.active {
-  background: rgba(90, 160, 250, 0.4);
-  color: #ffffff;
+  background: @bg-active;
+  color: @text-hover;
 }
 
 #workspaces button.urgent {
-  background: rgba(220, 50, 47, 0.7);
-  color: #fff;
+  background: @bg-urgent;
+  color: @text-hover;
 }
 
 /* === Taskbar === */
+#taskbar {
+  margin: 2px 3px;
+  padding: 3px;
+  border-radius: 15px;
+  background: @bg-dark;
+}
+
+#taskbar.empty {
+  border-radius: 0;
+  background: transparent;
+}
+
 #taskbar button {
-  padding: 0 6px;
-  margin: 2px;
-  border-radius: 6px;
-  background: rgba(30, 30, 30, 0.5);
+  padding: 0px 5px;
+  margin: 0px 1px;
+  border: none;
+  border-radius: 15px;
+  background: transparent;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 #taskbar button.active {
-  background: rgba(90, 160, 250, 0.4);
+  background: @bg-active;
 }
 
 /* === Clock === */
@@ -116,14 +165,18 @@ window#waybar.hidden {
   color: #f39c12;
 }
 
-/* === MPRIS (media player) === */
+/* === MPRIS === */
 #mpris {
   color: #1db954;
 }
 
+#mpris.paused {
+  color: #fdb900;
+}
+
 /* === Power Button === */
 #custom-power {
-  font-size: 15px;
+  font-size: 10px;
   color: #fc2828;
 }
 
