@@ -1,0 +1,119 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 28,
+
+  "modules-left": ["custom/launcher", "wlr/taskbar", "hyprland/workspaces", "mpris"],
+  "modules-center": ["clock"],
+  "modules-right": ["network", "pulseaudio", "backlight", "memory", "cpu", "custom/power"],
+
+  "custom/launcher": {
+    "format": " ",
+    "tooltip": true,
+    "tooltip-format": "Applications",
+    "on-click": "wofi --show drun"
+  },
+
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 14,
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "tooltip":true,
+    "tooltip-format":"{name}"
+  },
+
+  "hyprland/workspaces": {
+    "disable-scroll": true
+  },
+
+  "mpris": {
+    "format": "{player_icon} {title:.20}",
+    "format-paused": " {title:.20}",
+    "format-stopped": " ",
+    "tooltip": true,
+    "tooltip-format": "{player}: {status}\n{title}",
+    "player-icons": { "default": "", "firefox": "󰈹", "mpv":""}
+  },
+
+  "clock": {
+    "interval": 60,
+    "format":"{:%I:%M %p}",
+    "format-alt": "{:%a %d %b %H:%M}",
+    "tooltip": true,
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode":"month",
+      "format":{
+        "months": "<span color='#2aead3'><b>{}</b></span>",
+        "weekdays": "<span color='#00ff9a'><b>{}</b></span>",
+        "days": "<span color='#aecce6'><b>{}</b></span>",
+        "today": "<span color='#ff0000'><b>{}</b></span>",
+      }
+    }
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}% ",
+    "format-muted": "󰖁",
+    "max-volume": 100,
+    "smooth-scrolling-threshold": 0.25,
+    "on-click-right": "pavucontrol -t 3",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "tooltip": true,
+    "tooltip-format": "System volume:  {volume}%",
+    "format-icons": {
+      "default": [
+        "<span color='#808080'>  </span>",
+        "<span color='#FFFF66'>  </span>",
+        "<span color='#00FF7F'>  </span>"
+      ]
+    }
+  },
+
+  "backlight": {
+    "format": "{icon} {percent}% ",
+    "smooth-scrolling-threshold": 0.25,
+    "tooltip": true,
+    "tooltip-format": "Brightness:  {percent}%",
+    "format-icons": [
+      "<span color='#696969'> 󰃞 </span>",
+      "<span color='#A9A9A9'> 󰃝 </span>",
+      "<span color='#FFFF66'> 󰃟 </span>",
+      "<span color='#FFD700'> 󰃠 </span>"
+    ]
+  },
+
+  "network": {
+    "interval": 5,
+    "format-wifi": "  {bandwidthDownBytes} {bandwidthUpBytes}",
+    "format-ethernet": "󰦉  {ifname} ↓{bandwidthDownBytes} ↑{bandwidthUpBytes}",
+    "format-disconnected": "<span color='#ff0000'> 󰖪 </span>",
+    "format-alt": "<span color='#ff23a0'> {ipaddr} </span>",
+    "on-click-right": "foot -e 'nmtui' ",
+    "tooltip": true,
+    "tooltip-format-wifi": "<span color='#aecce6'>Device: {ifname}\n  SSID: {essid}\n    IP: {ipaddr}</span>",
+    "tooltip-format-ethernet": "Device: {ifname}\n    IP: {ipaddr}",
+    "tooltip-format-disconnected": "Offline"
+  },
+
+  "memory": {
+    "interval": 5,
+    "format": "<span color='#8A2BE2'>   </span>{used:0.2f} GB ",
+    "format-alt": "<span color='#4e11ff'>   </span>{percentage}% ",
+    "tooltip": true,
+    "tooltip-format":"Memory Used: {used:0.2f}/{total:0.2f} GiB\n  Swap Used: {swapUsed:0.2f}/{swapTotal:0.2f} GiB"
+  },
+
+  "cpu": {
+    "format": "<span color='#FF9F0A'>   </span>{usage}% ",
+    "tooltip": true
+  },
+
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "wlogout -b 4",
+    "tooltip": true,
+    "tooltip-format":  "Power Menu"
+  }
+}
