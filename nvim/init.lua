@@ -30,7 +30,7 @@ dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
 require "options"
-require "nvchad.autocmds"
+require "autocmds"
 
 vim.schedule(function()
   require "mappings"
@@ -39,7 +39,7 @@ end)
 -- Hyprlang LSP
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   pattern = { "*.hl", "hypr*.conf" },
-  callback = function(event)
+  callback = function()
     vim.lsp.start {
       name = "hyprlang",
       cmd = { "hyprls" },
