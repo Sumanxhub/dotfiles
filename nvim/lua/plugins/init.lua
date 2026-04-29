@@ -10,19 +10,22 @@ return {
   },
 
   ------------------- Lspconfig --------------------
-
   {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
     config = function()
       require "configs.lspconfig"
     end,
   },
 
+  -- test new blink
+  { import = "nvchad.blink.lazyspec" },
+
   ------------------- Mason -----------------------
-  --code suggesions and autocompletion plugins
   {
     "williamboman/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
     config = function()
       require "configs.mason"
     end,
@@ -31,6 +34,7 @@ return {
   ------------------- Treesitter -------------------
   {
     "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require "configs.treesitter"
     end,
@@ -39,6 +43,7 @@ return {
   ------------------- Telescope -------------------
   {
     "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
     opts = function()
       local conf = require "nvchad.configs.telescope"
 
@@ -46,8 +51,6 @@ return {
         ["<C-j>"] = require("telescope.actions").move_selection_next,
         ["<Esc>"] = require("telescope.actions").close,
       }
-      -- or
-      -- table.insert(conf.defaults.mappings.i, your table)
       return conf
     end,
   },
@@ -55,7 +58,8 @@ return {
   ------------------- Nvim-tree ----------------------
   {
     "nvim-tree/nvim-tree.lua",
-    requires = { "nvim-lua/plenary.nvim" },
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require "configs.nvim-tree"
     end,
@@ -64,6 +68,7 @@ return {
   ------------------ Auto-tag ----------------------
   {
     "windwp/nvim-ts-autotag",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       require "configs.autotag"
     end,
@@ -72,6 +77,7 @@ return {
   ------------------- Which-key ----------------------
   {
     "folke/which-key.nvim",
+    keys = { "<leader>" },
     cmd = "WhichKey",
     config = function()
       require "configs.which-key"
@@ -82,11 +88,7 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     ft = { "markdown" },
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
-    --@module 'render-markdown'
-    --@type render.md.UserConfig
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
     opts = function()
       require "configs.render_markdown"
       require("render-markdown").enable()
