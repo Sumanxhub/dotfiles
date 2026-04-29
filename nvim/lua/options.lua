@@ -5,7 +5,7 @@ require "nvchad.options"
 local o = vim.o
 
 o.clipboard = "unnamedplus"
-o.cursorline = true
+o.cursorline = false
 o.cursorlineopt = "both"
 o.scrolloff = 999
 -- Numbers
