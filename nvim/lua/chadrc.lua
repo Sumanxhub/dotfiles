@@ -4,7 +4,7 @@
 -- Please read that file to know all available options :(
 -- https://github.com/NvChad/ui/blob/v3.0/doc/nvui.txt
 
---@type ChadrcConfig
+---@type ChadrcConfig
 return {
 
   base46 = {
@@ -94,9 +94,10 @@ return {
   },
 
   term = {
+    startinsert = true,
     base46_colors = true,
     winopts = { number = false, relativenumber = false },
-    sizes = { sp = 0.3, vsp = 0.2, ["bo sp"] = 0.3, ["bo vsp"] = 0.2 },
+    sizes = { sp = 0.3, vsp = 0.25, ["bo sp"] = 0.3, ["bo vsp"] = 0.25 },
     float = {
       relative = "editor",
       row = 0.3,
