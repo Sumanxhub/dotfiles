@@ -1,3 +1,7 @@
+if vim.loader then
+  vim.loader.enable()
+end
+
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 
@@ -35,15 +39,3 @@ require "autocmds"
 vim.schedule(function()
   require "mappings"
 end)
-
--- Hyprlang LSP
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-  pattern = { "*.hl", "hypr*.conf" },
-  callback = function()
-    vim.lsp.start {
-      name = "hyprlang",
-      cmd = { "hyprls" },
-      root_dir = vim.fn.getcwd(),
-    }
-  end,
-})
