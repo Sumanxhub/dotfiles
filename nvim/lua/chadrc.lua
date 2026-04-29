@@ -12,10 +12,14 @@ return {
     transparency = true,
     -- theme_toggle = { "tokyonight", "vscode_light" },
 
-    -- hl_override = {
-    -- 	Comment = { italic = true },
-    -- 	["@comment"] = { italic = true },
-    -- },
+    hl_override = {
+      Comment = { italic = true },
+      ["@comment"] = { italic = true },
+      Visual = {
+        bg = "#ffac1c",
+        fg = "#000000",
+      },
+    },
   },
 
   ui = {
