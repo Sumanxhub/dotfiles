@@ -9,10 +9,10 @@ LAST_WALL="$HOME/.cache/wal/current_wall"
 # mkdir -p "$CONFIG_DIR"
 
 # Start swww-daemon if not running
-pgrep -x swww-daemon >/dev/null || swww-daemon &
+pgrep -x awww-daemon >/dev/null || awww-daemon &
 
 # If last wallpaper exists, restore it
 if [ -f "$LAST_WALL" ]; then
-    swww img "$LAST_WALL" --transition-type fade --transition-duration 1
+    awww img "$LAST_WALL" --transition-type fade --transition-duration 1
 fi
 
