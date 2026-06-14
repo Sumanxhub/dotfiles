@@ -46,7 +46,7 @@ conform.setup {
     css = { "prettier" },
     html = { "prettier" },
     json = { "prettier" },
-    kotlin = { "ktlint" },
+    -- kotlin = { "ktlint" },
 
     -- add more filetypes here
   },

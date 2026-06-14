@@ -1,184 +1,153 @@
--- load defaults i.e lua_lsp
+-----------------------------------------------------------------
+-- Load NvChad default LSP settings
+-----------------------------------------------------------------
 require("nvchad.configs.lspconfig").defaults()
 
-local configs = require "nvchad.configs.lspconfig"
+local nvlsp = require "nvchad.configs.lspconfig"
 
-local on_attach = configs.on_attach
-local on_init = configs.on_init
-local capabilities = configs.capabilities
-
-local lspconfig = require "lspconfig"
-
-local servers = {
-  "html",
-  --   "cssls",
-  --   "tailwindcss",
-  --   "clangd",
-  --   "lua_ls",
-  "ts_ls",
-  --   "eslint",
-  --   "pyright",
-  --   "jdtls",
-  --   -- "pylsp",
-  --   "rust_analyzer",
-  --   "kotlin_language_server",
+-----------------------------------------------------------------
+-- Shared base configuration applied to ALL servers
+-----------------------------------------------------------------
+local base = {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
 }
 
--- local nvlsp = require "nvchad.configs.lspconfig"
+-----------------------------------------------------------------
+-- Server definitions
+-- simple  -> servers that work with defaults only
+-- custom  -> servers that need extra settings / cmd / filetypes
+-----------------------------------------------------------------
+local servers = {
+  simple = {
+    "html",
+    "ts_ls",
+    -- "add_more_here"
+  },
 
--- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-  }
+  custom = {
+
+    clangd = {
+      cmd = { "clangd" },
+      filetypes = { "c", "cpp" },
+    },
+
+    cssls = {
+      settings = {
+        css = {
+          lint = {
+            unknownAtRules = "ignore",
+          },
+        },
+      },
+    },
+
+    lua_ls = {
+      cmd = { "lua-language-server" },
+      filetypes = { "lua" },
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim" },
+          },
+        },
+      },
+    },
+
+    pyright = {
+      settings = {
+        python = {
+          analysis = {
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+            typeCheckingMode = "basic",
+          },
+        },
+      },
+    },
+
+    tailwindcss = {
+      filetypes = { "html", "css", "javascript", "typescript", "javascriptreact", "typescriptreact" },
+      settings = {
+        classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
+        tailwindCSS = {
+          validate = true,
+          experimental = {
+            classRegex = {
+              "tw`([^`]*)`",
+              'tw="([^"]*)"',
+              'tw={"([^"}]*)"}',
+            },
+          },
+        },
+      },
+    },
+
+    -- eslint = {
+    --   filetypes = {
+    --     "javascript",
+    --     "javascriptreact",
+    --     "javascript.jsx",
+    --     "typescript",
+    --     "typescriptreact",
+    --     "typescript.tsx",
+    --     "vue",
+    --   },
+    -- },
+
+    jdtls = {
+      settings = {
+        java = {
+          eclipse = { downloadSources = true },
+          configuration = { updateBuildConfiguration = "interactive" },
+          maven = { downloadSources = true },
+          implementationsCodeLens = { enabled = true },
+          referencesCodeLens = { enabled = true },
+          format = { enabled = true },
+        },
+      },
+    },
+
+    -- rust_analyzer = {
+    --   filetypes = { "rust" },
+    --   settings = {
+    --     ["rust-analyzer"] = {
+    --       cargo = { allFeatures = true },
+    --       check = {
+    --         command = "clippy",
+    --         enabled = true,
+    --       },
+    --       procMacro = {
+    --         enable = true,
+    --       },
+    --     },
+    --   },
+    -- },
+
+    -- add_more_here
+  },
+}
+
+-----------------------------------------------------------------
+-- Build final configs and register them ONCE per server
+-----------------------------------------------------------------
+local enabled = {}
+
+-- Simple servers (base only)
+for _, name in ipairs(servers.simple) do
+  vim.lsp.config(name, base)
+  table.insert(enabled, name)
 end
 
--- lspconfig.html.setup {
---   on_attach = on_attach,
---   on_init = on_init,
---   capabilities = capabilities,
--- }
+-- Custom servers (base + server-specific config)
+for name, cfg in pairs(servers.custom) do
+  local final = vim.tbl_deep_extend("force", base, cfg)
+  vim.lsp.config(name, final)
+  table.insert(enabled, name)
+end
 
-lspconfig.cssls.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  settings = {
-    css = {
-      lint = {
-        unknownAtRules = "ignore",
-      },
-    },
-  },
-}
-
--- lspconfig.ts_ls.setup {
---   on_attach = on_attach,
---   on_init = on_init,
---   capabilities = capabilities,
--- }
-
-lspconfig.eslint.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  filetypes = {
-    "javascript",
-    "javascriptreact",
-    "javascript.jsx",
-    "typescript",
-    "typescriptreact",
-    "typescript.tsx",
-    "vue",
-  },
-}
-
-lspconfig.tailwindcss.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  settings = {
-    tailwindCSS = {
-      experimental = {
-        classRegex = { "tw`([^`]*)`", 'tw="([^"]*)"', 'tw={"([^"}]*)"}' },
-      },
-      validate = true,
-    },
-  },
-  filetypes = { "html", "css", "javascript", "typescript", "jsx", "tsx" },
-}
-
-lspconfig.pyright.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  settings = {
-    python = {
-      analysis = {
-        autoSearchPaths = true,
-        useLibraryCodeForTypes = true,
-        typeCheckingMode = "basic",
-      },
-    },
-  },
-}
-
-lspconfig.clangd.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  filetypes = { "c", "cpp" },
-  cmd = { "clangd" },
-}
-
-lspconfig.jdtls.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  settings = {
-    java = {
-      eclipse = {
-        downloadSources = true,
-      },
-      configuration = {
-        updateBuildConfiguration = "interactive",
-      },
-      maven = {
-        downloadSources = true,
-      },
-      implementationsCodeLens = {
-        enabled = true,
-      },
-      referencesCodeLens = {
-        enabled = true,
-      },
-      format = {
-        enabled = true,
-      },
-    },
-  },
-}
-
-lspconfig.lua_ls.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  filetypes = { "lua" },
-  cmd = { "lua-language-server" },
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" }, -- Define 'vim' as a recognized global
-      },
-    },
-  },
-}
-
-lspconfig.rust_analyzer.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  filetypes = { "rust" },
-  settings = {
-    ["rust-analyzer"] = {
-      cargo = { allFeatures = true },
-      check = {
-        command = "clippy",
-        enabled = true,
-      },
-      procMacro = {
-        enable = true,
-      },
-    },
-  },
-}
-
--- lspconfig.kotlin_language_server.setup {
---   on_attach = on_attach,
---   on_init = on_init,
---   capabilities = capabilities,
---   filetypes = { "kotlin" },
---   cmd = { "kotlin-language-server" },
--- }
+-----------------------------------------------------------------
+-- Enable all configured servers
+-----------------------------------------------------------------
+vim.lsp.enable(enabled)

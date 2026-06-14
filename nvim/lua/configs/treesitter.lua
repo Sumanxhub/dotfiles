@@ -1,4 +1,4 @@
-require("nvim-treesitter.configs").setup {
+local options = {
   ensure_installed = {
     -- defaults
     "vim",
@@ -22,18 +22,9 @@ require("nvim-treesitter.configs").setup {
     --
     "markdown",
     "markdown_inline",
-  },
-
-  sync_install = false,
-  auto_install = true,
-
-  ignore_install = { "vimdoc" },
-
-  highlight = {
-    enable = true,
-    use_languagetree = true,
-  },
-  indent = {
-    enable = true,
-  },
+  }
+  -- Note: You no longer need `highlight = { enable = true }` here. 
+  -- NvChad handles `vim.treesitter.start()` automatically in its own autocmds now.
 }
+
+return options
