@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+WALL_DIR="$HOME/Pictures/chutie"
+LIST_FILE="/tmp/freewill.list"
+
+# Start swww-daemon if not running
+pgrep -x awww-daemon >/dev/null || awww-daemon &
+
+# Generate wallpaper list (relative paths)
+find "$WALL_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" \) \
+    | sed "s|$WALL_DIR/||" \
+    > "$LIST_FILE"
+
+# Pick wallpaper using fuzzel
+CHOICE=$(cat "$LIST_FILE" | fuzzel --dmenu --prompt "Wallpaper:")
+
+# Exit if nothing selected
+[ -z "$CHOICE" ] && exit
+
+# Full path
+WALL="$WALL_DIR/$CHOICE"
+
+# Apply wallpaper
+awww img "$WALL" \
+    --transition-fps 60 \
+    --transition-type grow \
+    --transition-duration 1
+
+# Update symlink (optional)
+mkdir -p "$HOME/.cache/wal/"
+ln -sf "$WALL" "$HOME/.cache/wal/current_wall"

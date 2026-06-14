@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+WALL_DIR="$HOME/Pictures/chutie/"
+
+# Start swww-daemon if not running
+pgrep -x awww-daemon >/dev/null || awww-daemon &
+
+while true; do
+    # Pick a random image
+    WALL=$(find "$WALL_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" \) | shuf -n 1)
+
+    # Set wallpaper
+    awww img "$WALL" \
+        --transition-fps 60 \
+        --transition-type grow \
+        --transition-duration 1
+
+    # Wait 10 seconds
+    sleep 3
+done
