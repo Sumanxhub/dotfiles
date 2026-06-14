@@ -58,7 +58,7 @@
 
   "pulseaudio": {
     "format": "{icon} {volume}% ",
-    "format-muted": "󰖁",
+    "format-muted": "<span color='#A9A9A9'>  󰖁  </span>",
     "max-volume": 100,
     "smooth-scrolling-threshold": 0.25,
     "on-click-right": "pavucontrol -t 3",
@@ -67,7 +67,7 @@
     "tooltip-format": "System volume:  {volume}%",
     "format-icons": {
       "default": [
-        "<span color='#808080'>  </span>",
+        "<span color='#A9A9A9'>  </span>",
         "<span color='#FFFF66'>  </span>",
         "<span color='#00FF7F'>  </span>"
       ]
